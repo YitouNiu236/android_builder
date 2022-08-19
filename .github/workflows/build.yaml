@@ -37,6 +37,15 @@ jobs:
           if [ ! -f "gradlew" ]; then gradle wrapper; fi
           chmod +x gradlew
           ./gradlew assemblerelease --build-cache --parallel --daemon --warning-mode all
+      - name: Prepare app
+        working-directory: ./project
+        run: |
+         echo "tag=$(git log --date=format:'%Y%m%d-%H%M' " >> $GITHUB_ENV
+          rm -rf apk/
+          mkdir -p apk/
+          for file in `find ~ -name "*release*.apk" -print`; do
+            mv "$file" apk/TVBox_${{ env.tag }}.apk
+          done
       - name: Upload APK
         uses: actions/upload-artifact@v2
         with:

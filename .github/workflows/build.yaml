@@ -40,7 +40,7 @@ jobs:
       - name: Prepare app
         working-directory: ./project
         run: |
-         echo "tag=$(git log --date=format:'%Y%m%d-%H%M' " >> $GITHUB_ENV
+         echo "tag=$(git log --date=format:'%Y%m%d-%H%M') " >> $GITHUB_ENV
           rm -rf apk/
           mkdir -p apk/
           for file in `find ~ -name "*release*.apk" -print`; do

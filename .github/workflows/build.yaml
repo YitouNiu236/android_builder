@@ -30,7 +30,7 @@ jobs:
         run: |
           git clone ${{ env.upstreamCode }} project
           cd project
-          git checkout ${{ env.commit }}
+          #git checkout ${{ env.commit }}
           echo "tag=$(git log --date=format:'%Y%m%d-%H%M' --pretty=format:%cd ${{ env.commitS }} -1)" >> $GITHUB_ENV
       - name: Release Apk Sign
         working-directory: project
